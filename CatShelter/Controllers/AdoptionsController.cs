@@ -1,0 +1,175 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using CatShelter.Data;
+
+namespace CatShelter.Controllers
+{
+    public class AdoptionsController : Controller
+    {
+        private readonly ApplicationDbContext _context;
+
+        public AdoptionsController(ApplicationDbContext context)
+        {
+            _context = context;
+        }
+
+        // GET: Adoptions
+        public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = _context.Adoptions.Include(a => a.Cats).Include(a => a.Clients);
+            return View(await applicationDbContext.ToListAsync());
+        }
+
+        // GET: Adoptions/Details/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.Adoptions == null)
+            {
+                return NotFound();
+            }
+
+            var adoption = await _context.Adoptions
+                .Include(a => a.Cats)
+                .Include(a => a.Clients)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (adoption == null)
+            {
+                return NotFound();
+            }
+
+            return View(adoption);
+        }
+
+        // GET: Adoptions/Create
+        public IActionResult Create()
+        {
+            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id");
+            ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id");
+            return View();
+        }
+
+        // POST: Adoptions/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("ClientsId,CatsId,Description,AdoptionDate")] Adoption adoption)
+        {
+            adoption.AdoptionDate = DateTime.Now;
+            if (!ModelState.IsValid)
+            {
+                ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
+                ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
+                return View(adoption);
+
+            }
+            _context.Add(adoption);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        // GET: Adoptions/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context.Adoptions == null)
+            {
+                return NotFound();
+            }
+
+            var adoption = await _context.Adoptions.FindAsync(id);
+            if (adoption == null)
+            {
+                return NotFound();
+            }
+            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
+            ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
+            return View(adoption);
+        }
+
+        // POST: Adoptions/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientsId,CatsId,Description,AdoptionDate")] Adoption adoption)
+        {
+            if (id != adoption.Id)
+            {
+                return NotFound();
+            }
+
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _context.Update(adoption);
+                    await _context.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!AdoptionExists(adoption.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
+            ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
+            return View(adoption);
+        }
+
+        // GET: Adoptions/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context.Adoptions == null)
+            {
+                return NotFound();
+            }
+
+            var adoption = await _context.Adoptions
+                .Include(a => a.Cats)
+                .Include(a => a.Clients)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (adoption == null)
+            {
+                return NotFound();
+            }
+
+            return View(adoption);
+        }
+
+        // POST: Adoptions/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context.Adoptions == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Adoptions'  is null.");
+            }
+            var adoption = await _context.Adoptions.FindAsync(id);
+            if (adoption != null)
+            {
+                _context.Adoptions.Remove(adoption);
+            }
+
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        private bool AdoptionExists(int id)
+        {
+            return (_context.Adoptions?.Any(e => e.Id == id)).GetValueOrDefault();
+        }
+    }
+}

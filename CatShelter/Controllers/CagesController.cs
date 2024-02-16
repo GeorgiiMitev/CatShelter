@@ -21,9 +21,9 @@ namespace CatShelter.Controllers
         // GET: Cages
         public async Task<IActionResult> Index()
         {
-              return _context.Cages != null ? 
-                          View(await _context.Cages.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Cages'  is null.");
+            return _context.Cages != null ?
+                        View(await _context.Cages.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Cages'  is null.");
         }
 
         // GET: Cages/Details/5
@@ -55,15 +55,18 @@ namespace CatShelter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CageNumber,Date,Description")] Cage cage)
+        public async Task<IActionResult> Create([Bind("CageNumber,Description")] Cage cage)
         {
-            if (ModelState.IsValid)
+            cage.Date = DateTime.Now;
+            if (!ModelState.IsValid)
             {
-                _context.Add(cage);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(cage);
+
+
             }
-            return View(cage);
+            _context.Add(cage);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Cages/Edit/5
@@ -149,14 +152,14 @@ namespace CatShelter.Controllers
             {
                 _context.Cages.Remove(cage);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CageExists(int id)
         {
-          return (_context.Cages?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Cages?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

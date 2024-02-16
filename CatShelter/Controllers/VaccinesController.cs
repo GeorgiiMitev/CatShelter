@@ -21,9 +21,9 @@ namespace CatShelter.Controllers
         // GET: Vaccines
         public async Task<IActionResult> Index()
         {
-              return _context.Vaccines != null ? 
-                          View(await _context.Vaccines.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Vaccines'  is null.");
+            return _context.Vaccines != null ?
+                        View(await _context.Vaccines.ToListAsync()) :
+                        Problem("Entity set 'ApplicationDbContext.Vaccines'  is null.");
         }
 
         // GET: Vaccines/Details/5
@@ -55,15 +55,16 @@ namespace CatShelter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Date,Description")] Vaccine vaccine)
+        public async Task<IActionResult> Create([Bind("Name,Description")] Vaccine vaccine)
         {
-            if (ModelState.IsValid)
+            vaccine.Date = DateTime.Now;
+            if (!ModelState.IsValid)
             {
-                _context.Add(vaccine);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return View(vaccine);
             }
-            return View(vaccine);
+            _context.Add(vaccine);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Vaccines/Edit/5
@@ -149,14 +150,14 @@ namespace CatShelter.Controllers
             {
                 _context.Vaccines.Remove(vaccine);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VaccineExists(int id)
         {
-          return (_context.Vaccines?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Vaccines?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }

@@ -57,6 +57,7 @@ namespace CatShelter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BreedName,Date,Description")] Breed breed)
         {
+            breed.Date=DateTime.Now;
             if (!ModelState.IsValid)
             {
                 return View(breed);
