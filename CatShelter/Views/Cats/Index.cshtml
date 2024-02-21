@@ -3,12 +3,35 @@
 @{
     ViewData["Title"] = "Index";
 }
-
+<style>
+    .table {
+        vertical-align: middle;
+    }
+    tbody img{
+        border-radius: 10px;
+        max-width: 100%;
+        height: auto;
+        box-shadow: 1px 1px 3px black;
+        border: 1px solid black;
+        
+    }
+    .buttons{
+        display: flex;
+        flex-direction: column;
+    }
+    .buttons a{
+        margin: 3px 0px;
+    }
+    .description{
+        text-align: justify-all;
+        vertical-align: top;
+    }
+</style>
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Create</a></div>
+                
+            
 <table class="table">
     <thead>
         <tr>
@@ -43,41 +66,46 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Breeds.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vaccines.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cages.Id)
-            </td>
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.ImageURL)"/>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Age)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Color)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Breeds.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vaccines.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cages.Id)
+                </td>
+                <td>
+                    <img src="@Html.DisplayFor(modelItem => item.ImageURL)" width="300" height="200"/>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    <div class=description>
+                    @Html.DisplayFor(modelItem => item.Description)
+                    </div>
+                </td>
+                <td>
+                    <div class="buttons">
+                        <a asp-action="Edit" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Details</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

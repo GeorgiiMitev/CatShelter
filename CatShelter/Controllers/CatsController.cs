@@ -101,6 +101,7 @@ namespace CatShelter.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Age,Color,BreedsId,VaccinesId,CagesId,ImageURL,Date,Description")] Cat cat)
         {
+            cat.Date = DateTime.Now;
             if (id != cat.Id)
             {
                 return NotFound();
