@@ -3,7 +3,14 @@
 @{
     ViewData["Title"] = "Edit";
 }
-
+<style>
+    .buttons a {
+        margin: 3px 0px;
+    }
+    .buttons #savebutton{
+        margin-top: 5px;
+    }
+</style>
 <h1>Edit</h1>
 
 <h4>Cat</h4>
@@ -49,26 +56,31 @@
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+            <label asp-for="Date" class="control-label"></label>
+            <input asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
             </div>*@
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+            <div class="buttons">
+                <div class="form-group" id="savebutton">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+                <div>
+                    <a asp-action="Index" type="submit" class="btn btn-primary">Back to List</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
