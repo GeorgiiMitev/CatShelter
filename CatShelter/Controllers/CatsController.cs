@@ -49,9 +49,9 @@ namespace CatShelter.Controllers
         // GET: Cats/Create
         public IActionResult Create()
         {
-            ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "Id");
-            ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "Id");
-            ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Id");
+            ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "BreedName");
+            ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "CageNumber");
+            ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Name");
             return View();
         }
 
@@ -65,9 +65,9 @@ namespace CatShelter.Controllers
             cat.Date = DateTime.Now;
             if (!ModelState.IsValid)
             {
-                ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "Id", cat.BreedsId);
-                ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "Id", cat.CagesId);
-                ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Id", cat.VaccinesId);
+                ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "BreedName", cat.BreedsId);
+                ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "CageNumber", cat.CagesId);
+                ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Name", cat.VaccinesId);
                 return View(cat);
             }
             _context.Add(cat);
@@ -88,9 +88,9 @@ namespace CatShelter.Controllers
             {
                 return NotFound();
             }
-            ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "Id", cat.BreedsId);
-            ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "Id", cat.CagesId);
-            ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Id", cat.VaccinesId);
+            ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "BreedName", cat.BreedsId);
+            ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "CageNumber", cat.CagesId);
+            ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Name", cat.VaccinesId);
             return View(cat);
         }
 
@@ -127,9 +127,9 @@ namespace CatShelter.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "Id", cat.BreedsId);
-            ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "Id", cat.CagesId);
-            ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Id", cat.VaccinesId);
+            ViewData["BreedsId"] = new SelectList(_context.Breeds, "Id", "BreedName", cat.BreedsId);
+            ViewData["CagesId"] = new SelectList(_context.Cages, "Id", "CageNumber", cat.CagesId);
+            ViewData["VaccinesId"] = new SelectList(_context.Vaccines, "Id", "Name", cat.VaccinesId);
             return View(cat);
         }
 

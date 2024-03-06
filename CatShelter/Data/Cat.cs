@@ -1,4 +1,6 @@
-﻿namespace CatShelter.Data
+﻿using System.ComponentModel;
+
+namespace CatShelter.Data
 {
     public class Cat
     {
@@ -13,6 +15,7 @@
         public Vaccine Vaccines { get; set; }
         public int CagesId { get; set; }
         public Cage Cages { get; set; }
+        [DisplayName("Image")]
         public string ImageURL { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public string Description { get; set; }

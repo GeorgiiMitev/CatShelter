@@ -22,10 +22,6 @@
     .buttons a{
         margin: 3px 0px;
     }
-    .description{
-        text-align: justify-all;
-        vertical-align: top;
-    }
 </style>
 <h1>Index</h1>
 
@@ -79,13 +75,13 @@
                     @Html.DisplayFor(modelItem => item.Color)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Breeds.Id)
+                    @Html.DisplayFor(modelItem => item.Breeds.BreedName)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Vaccines.Id)
+                    @Html.DisplayFor(modelItem => item.Vaccines.Name)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Cages.Id)
+                    @Html.DisplayFor(modelItem => item.Cages.CageNumber)
                 </td>
                 <td>
                     <img src="@Html.DisplayFor(modelItem => item.ImageURL)" width="300" height="200"/>
@@ -102,7 +98,7 @@
                     <div class="buttons">
                         <a asp-action="Edit" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Edit</a>
                         <a asp-action="Details" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Delete</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" type="submit"  class="btn btn-danger">Delete</a>
                     </div>
                 </td>
             </tr>
