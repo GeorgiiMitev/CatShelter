@@ -3,7 +3,15 @@
 @{
     ViewData["Title"] = "Create";
 }
+<style>
+    .buttons a {
+        margin: 3px 0px;
+    }
 
+    .buttons #createbutton {
+        margin-top: 5px;
+    }
+</style>
 <h1>Create</h1>
 
 <h4>Cat</h4>
@@ -29,15 +37,15 @@
             </div>
             <div class="form-group">
                 <label asp-for="BreedsId" class="control-label"></label>
-                <select asp-for="BreedsId" class ="form-control" asp-items="ViewBag.BreedsId"></select>
+                <select asp-for="BreedsId" class="form-control" asp-items="ViewBag.BreedsId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="VaccinesId" class="control-label"></label>
-                <select asp-for="VaccinesId" class ="form-control" asp-items="ViewBag.VaccinesId"></select>
+                <select asp-for="VaccinesId" class="form-control" asp-items="ViewBag.VaccinesId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="CagesId" class="control-label"></label>
-                <select asp-for="CagesId" class ="form-control" asp-items="ViewBag.CagesId"></select>
+                <select asp-for="CagesId" class="form-control" asp-items="ViewBag.CagesId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ImageURL" class="control-label"></label>
@@ -45,26 +53,31 @@
                 <span asp-validation-for="ImageURL" class="text-danger"></span>
             </div>
             @*<div class="form-group">
-                <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
-                <span asp-validation-for="Date" class="text-danger"></span>
+            <label asp-for="Date" class="control-label"></label>
+            <input asp-for="Date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
             </div>*@
             <div class="form-group">
                 <label asp-for="Description" class="control-label"></label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+            <div class="buttons">
+                <div class="form-group" id="createbutton">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                <div>
+                    <a asp-action="Index" type="submit" class="btn btn-primary">Back to List</a>
+                </div>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
