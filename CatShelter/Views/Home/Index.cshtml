@@ -1,40 +1,87 @@
-﻿@{
+﻿
+@model IEnumerable<CatShelter.Data.Cat>
+
+@{
     ViewData["Title"] = "Home Page";
 }
+
 <style>
-    img{
+    img {
         max-width: 100%;
         height: auto;
         margin-left: 0;
         margin-right: 0;
-
     }
-    .image-container{
+
+    .image-container {
         margin-bottom: -50px;
     }
-    .centered-text{
-        font-size: 48px;
-        font-family: cursive;
+
+    .centered-text {
         position: absolute;
-        top: 40%;
+        top: 35%;
         bottom: 0;
-        right: 0;
-        left: 35%;
+        right: 20%;
+        left: 0;
+        color: white;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 56px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+        margin-bottom: 10px;
+    }
+    .heading{
+        font-size: 40px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: 900;
+    }
+    .heading a:hover{
+        font-size: 44px;
+        text-decoration: none;
         color: white;
     }
-    span{
-        text-align: center;
-        display: flex;
+    span {
+        padding: 3px 10px;
+        border: 5px solid white;
+        border-radius: 9999px;
     }
-    
+    a{
+        text-decoration: none;
+        color: white;
+    }
+    a:visited{
+        color: white;
+        text-decoration: none;
+    }
+    .cat-container{
+        border: 3px solid black;
+        padding: 3px;
+    }
+    .adoption-container{
+        border: 3px solid black;
+        width: 30%;
+        
+    }
 </style>
 <div class="image-container">
     <img src="https://d6ph2xvi1auyo.cloudfront.net/images/1.jpg" />
 </div>
 <div class="centered-text">
-    <span>Гарфилд<br />
-        Намери дом.
-    </span>
+    <div class="heading">
+        <h1>Гарфилд<br /></h1>
+        <a href="https://google.bg"><span>Намери дом.</span></a>
+    </div>
+</div>
+<hr size="4" style="margin-top: 75px">
+<div class="cat-container">
+    tESTTTTTT
+    <div class="adoption-container">
+        test
+    </div>
+
 </div>
 
 
