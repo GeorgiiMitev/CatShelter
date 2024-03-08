@@ -6,16 +6,20 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using CatShelter.Data;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace CatShelter.Controllers
 {
+    [Authorize]
     public class AdoptionsController : Controller
     {
         private readonly ApplicationDbContext _context;
-
-        public AdoptionsController(ApplicationDbContext context)
+        private readonly UserManager<Client> _userManager;
+        public AdoptionsController(ApplicationDbContext context, UserManager<Client> user)
         {
             _context = context;
+            _userManager = user;
         }
 
         // GET: Adoptions
@@ -48,8 +52,8 @@ namespace CatShelter.Controllers
         // GET: Adoptions/Create
         public IActionResult Create()
         {
-            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id");
-            ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id");
+            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Name");
+            //ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id");
             return View();
         }
 
@@ -61,6 +65,7 @@ namespace CatShelter.Controllers
         public async Task<IActionResult> Create([Bind("ClientsId,CatsId,Description,AdoptionDate")] Adoption adoption)
         {
             adoption.AdoptionDate = DateTime.Now;
+            adoption.ClientsId = _userManager.GetUserId(User);
             if (!ModelState.IsValid)
             {
                 ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
@@ -76,6 +81,7 @@ namespace CatShelter.Controllers
         // GET: Adoptions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            
             if (id == null || _context.Adoptions == null)
             {
                 return NotFound();
@@ -87,7 +93,7 @@ namespace CatShelter.Controllers
                 return NotFound();
             }
             ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
-            ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
+            //ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
             return View(adoption);
         }
 
@@ -96,8 +102,9 @@ namespace CatShelter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientsId,CatsId,Description,AdoptionDate")] Adoption adoption)
+        public async Task<IActionResult> Edit(int id, [Bind("CatsId,Description,AdoptionDate")] Adoption adoption)
         {
+            adoption.ClientsId = _userManager.GetUserId(User);
             if (id != adoption.Id)
             {
                 return NotFound();

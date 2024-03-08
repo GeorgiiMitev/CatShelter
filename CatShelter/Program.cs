@@ -1,3 +1,4 @@
+using ASPShopBag.Services;
 using CatShelter.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -37,7 +38,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
-app.UseAuthentication();
+//app.UseAuthentication();
+
+app.PrepareDataBase().Wait();
 
 app.MapControllerRoute(
     name: "default",
