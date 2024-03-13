@@ -4,104 +4,120 @@
     ViewData["Title"] = "Index";
 }
 <style>
-    .table {
-        vertical-align: middle;
-    }
-    tbody img{
-        border-radius: 10px;
-        max-width: 100%;
-        height: auto;
-        box-shadow: 1px 1px 3px black;
-        border: 1px solid black;
-        
-    }
-    .buttons{
+    .buttons {
         display: flex;
         flex-direction: column;
     }
-    .buttons a{
-        margin: 3px 0px;
+
+        .buttons a {
+            margin: 3px 0px;
+        }
+
+    .cats-container {
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .cats {
+        border: 3px solid #d18111;
+        width: 30%;
+        border-radius: 10px;
+    }
+
+        .cats img {
+            max-width: 100%;
+            height: 250px;
+            object-fit: contain;
+        }
+
+        .cats .cat-name {
+            text-align: center;
+            margin: 0;
+        }
+
+    .col-sm-10 {
+        width: 50%;
+    }
+
+    .col-sm-2 {
+        width: 50%;
     }
 </style>
-<h1>Index</h1>
+<center><h1>"Осинови, а не купувай!"</h1></center>
+@if (User.IsInRole("Admin"))
+{
+    <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Create</a></div></center>
+}
 
-<div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Create</a></div>
-                
-            
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Breeds)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vaccines)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cages)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ImageURL)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Age)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Color)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Breeds.BreedName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Vaccines.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Cages.CageNumber)
-                </td>
-                <td>
-                    <img src="@Html.DisplayFor(modelItem => item.ImageURL)" width="300" height="200"/>
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Date)
-                </td>
-                <td>
-                    <div class=description>
-                    @Html.DisplayFor(modelItem => item.Description)
+
+<div class="cats-container">
+    @foreach (var item in Model)
+    {
+
+        <div class="cats" style="display: flex; font-family: cursive; flex-direction: column; margin-bottom: 25px;">
+            <span class="cat-name" style="background-color:orange; font-weight:800; font-size: 25px;border-bottom: 3px solid #d18111; border-top-left-radius: 5px; border-top-right-radius: 5px;">@Html.DisplayFor(modelItem => item.Name)</span>
+            <img src="@Html.DisplayFor(modelItem => item.ImageURL)" />
+            <div class="cat-description" style="display: inline-flex; flex-direction: row; padding: 10px;">
+                <div>
+                    <div>
+
+                        <dl class="row" style="position: relative;">
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Age)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Age) <span>Година/и</span>
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Color)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Color)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Breeds)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Breeds.BreedName)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => item.Vaccines)
+                            </dt>
+                            <dd class="col-sm-10">
+                                @Html.DisplayFor(model => item.Vaccines.Name)
+                            </dd>
+                            <dt class="col-sm-2">
+                                @Html.DisplayNameFor(model => model.Cages)
+                            </dt>
+                            <dd class="col-sm-10">
+                                <span>№ &nbsp;</span>@Html.DisplayFor(model => item.Cages.CageNumber)
+                            </dd>
+                        </dl>
                     </div>
-                </td>
-                <td>
-                    <div class="buttons">
-                        <a asp-action="Edit" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Edit</a>
-                        <a asp-action="Details" asp-route-id="@item.Id" type="submit"  class="btn btn-primary">Details</a>
-                        <a asp-action="Delete" asp-route-id="@item.Id" type="submit"  class="btn btn-danger">Delete</a>
-                    </div>
-                </td>
-            </tr>
-        }
-    </tbody>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <div class="buttons">
+                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Edit</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Details</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Delete</a>
+                        </div>
+                    }
+                    @if (User.IsInRole("User"))
+                    {
+                        <div class="buttons">
+                            <a asp-controller="Adoptions" asp-action="Index" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Осинови</a>
+                        </div>
+                    }
+
+                </div>
+
+
+            </div>
+        </div>
+
+    }
+</div>
+
 </table>
