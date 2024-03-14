@@ -74,12 +74,16 @@
         }
 
     .aboutus-container {
-        
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        color: orange;
+        text-shadow: 1px 1.5px 1px black;
         padding: 3px; 
     }
 
     .aboutusimage-container{
-        
+        padding: 0px 10px;
         width:50%;
 
     }
@@ -93,6 +97,12 @@
     .aboutus-text{
         margin-bottom: 100px;
         line-height: 2.2rem;
+        width: 50%;
+        padding: 0px 15px;
+        font-family: cursive;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
     }
     .title{
         color: black;
@@ -102,27 +112,40 @@
         font-size: 36px;
         text-transform: uppercase;
     }
+    .aboutus-text p {
+        font-size: 22px;
+        text-align: justify;
+        flex-direction: column;
+    }
+    .text-center{
+        font-size: 36px;
+        font-family: cursive;
+        margin-bottom: 25px;
+    }
+    .title{
+        text-align: center;
+    }
 </style>
 <div class="image-container">
     <img src="https://d6ph2xvi1auyo.cloudfront.net/images/1.jpg" />
     <div class="centered-text">
         <div class="heading">
             <h1>Гарфилд<br /></h1>
-            <a href=""><span>Намери дом</span></a>
+            <a href="Cats"><span>Осинови коте</span></a>
         </div>
     </div>
 </div>
 
 <hr size="4" style="margin-top: 75px">
-<div class="text-center" style="font-size: 36px; font-family: cursive; margin-bottom: 25px;">За нас</div>
-<div class="aboutus-container" style="display: flex; flex-direction: row; flex-wrap: wrap; color: orange; text-shadow: 2px 2px 1px black;">
-    <div class="aboutusimage-container" style="padding: 0px 10px;">
+<div class="text-center">За нас</div>
+<div class="aboutus-container">
+    <div class="aboutusimage-container">
         <img src="https://thevets.com/wp-content/uploads/2022/05/orange_cats_2-1.jpg" />
     </div>
-    <div class="aboutus-text" style="width: 50%; padding: 0px 15px; font-family: cursive; display: flex; align-items: center; flex-direction: column; border-right: 2px solid lightgray; margin-bottom: 60px">
-        <h3 class="title" style="text-align:center;">Спасяваш живот и даваш любов</h3>
+    <div class="aboutus-text" style="margin-bottom: 60px; border-right: 2px solid lightgray;">
+        <h3 class="title">Спасяваш живот и даваш любов</h3>
         <br />
-        <p style="font-size: 22px; text-align: justify; flex-direction: column;">
+        <p>
             Съдбата на животните на улицата не е радостна,
             а много от тях изобщо не оцеляват. Осиновявайки
             коте от улицата, спасяваш/променяш живота му и
@@ -131,10 +154,10 @@
             всеки, в чието семейство има поне една.
         </p>
     </div>
-    <div class="aboutus-text" style="width: 50%; padding: 0px 15px; font-family: cursive; display: flex; align-items: center; flex-direction: column; border-left: 2px solid lightgray">
-        <h3 class="title" style="text-align:center;">Красиви, здрави, истински котки</h3>
+    <div class="aboutus-text" style="border-left: 2px solid lightgray">
+        <h3 class="title">Красиви, здрави, истински котки</h3>
         <br />
-        <p style="font-size: 22px; text-align: justify; flex-direction: column;">
+        <p >
             Котките са изумителни - раждат се красиви и със стил,
             независимо от породата или липсата на такава.
             Добре гледаната котка винаги е естетична и се
@@ -143,16 +166,16 @@
             че с нея вероятно ще посещавате рядко ветеринаря.
         </p>
     </div>
-    <div class="aboutusimage-container" style="padding: 0px 10px;">
+    <div class="aboutusimage-container">
         <img src="https://ontariospca.ca/wp-content/uploads/2018/08/Adopting-shelter-cat.jpg"/>
     </div>
-    <div class="aboutusimage-container" style="padding: 0px 10px;">
+    <div class="aboutusimage-container">
         <img src="https://www.hdwallpapers.in/download/funny_cat_is_lying_down_on_floor_playing_with_ball_hd_funny_cat-1920x1080.jpg"/>
     </div>
-    <div class="aboutus-text" style="width: 50%; padding: 0px 15px; font-family: cursive; display: flex; align-items: center; flex-direction: column; border-right: 2px solid lightgray">
-        <h3 class="title" style="text-align:center;">Да отглеждаш котка е лесно</h3>
+    <div class="aboutus-text" style="border-right: 2px solid lightgray">
+        <h3 class="title">Да отглеждаш котка е лесно</h3>
         <br />
-        <p style="font-size: 22px; text-align: justify; flex-direction: column;">
+        <p>
             Котките не изискват разходки навън рано сутрин.
             Най-често те спят, докато и ти спиш,
             защото ги мързи. Изключително чисти
@@ -162,10 +185,10 @@
             уикенд или докато сте на почивка, ако има кой да ги наглежда.
         </p>
     </div>  
-    <div class="aboutus-text" style="width: 50%; padding: 0px 15px; font-family: cursive; display: flex; align-items: center; flex-direction: column; border-left: 2px solid lightgray">
-        <h3 class="title" style="text-align:center;">С твоя помощ популацията намалява</h3>
+    <div class="aboutus-text" style="border-left: 2px solid lightgray">
+        <h3 class="title">С твоя помощ популацията намалява</h3>
         <br />
-        <p style="font-size: 22px; text-align: justify; flex-direction: column;">
+        <p>
             Една улична котка става родител средно
             на 8 котета за една година. През следващата
             година семейството ѝ ще се увечи с около 50-60 внучета,
@@ -175,7 +198,7 @@
             коте е не само благородно, но и социално отговорно решение
         </p>
     </div>
-    <div class="aboutusimage-container" style="padding: 0px 10px;">
+    <div class="aboutusimage-container">
         <img src="https://www.bigissue.com/wp-content/uploads/2021/06/News_BOB_HERO_1466.jpg?w=1920" />
     </div>
 </div>

@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CatShelter.styles.css" asp-append-version="true" />
     <style>
-        nav img{
+        nav img {
             display: flex;
             width: 200px;
         }
+
         nav ul li {
-            font-weight:500;
+            font-weight: 500;
         }
     </style>
 </head>
@@ -23,7 +24,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3" style="position: relative;">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img draggable="false"  src="https://i.ibb.co/KrCV9FV/3a523eea0594be103f8542feab3283fd-removebg-preview.png" style="draggable: false;" /></a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img draggable="false" src="https://i.ibb.co/KrCV9FV/3a523eea0594be103f8542feab3283fd-removebg-preview.png" style="draggable: false;" /></a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -34,20 +35,25 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cats" asp-action="Index">Cats</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cats" asp-action="Index">Осинови</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Adoptions" asp-action="Index">Adoptions</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Cages</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Breeds</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Vaccines</a>
-                        </li>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Adoptions" asp-action="Index">Осиновители</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Породи</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Ваксини</a>
+                            </li>
+                        }
+
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>

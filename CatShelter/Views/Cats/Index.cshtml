@@ -24,6 +24,10 @@
         border: 3px solid #d18111;
         width: 30%;
         border-radius: 10px;
+        display: flex;
+        font-family: cursive;
+        flex-direction: column;
+        margin-bottom: 25px;
     }
 
         .cats img {
@@ -32,10 +36,25 @@
             object-fit: contain;
         }
 
-        .cats .cat-name {
-            text-align: center;
-            margin: 0;
-        }
+    .cat-name {
+        background-color: orange;
+        font-weight: 800;
+        font-size: 25px;
+        border-bottom: 3px solid #d18111;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    .cats .cat-name {
+        text-align: center;
+        margin: 0;
+    }
+
+    .cat-description {
+        display: inline-flex;
+        flex-direction: row;
+        padding: 10px;
+    }
 
     .col-sm-10 {
         width: 50%;
@@ -46,9 +65,9 @@
     }
 </style>
 <center><h1>"Осинови, а не купувай!"</h1></center>
-@if (User.IsInRole("Admin"))
+@if (User.IsInRole("Admin") || User.IsInRole("User"))
 {
-    <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Create</a></div></center>
+    <center><div class="form-group"><a asp-action="Create" type="submit" class="btn btn-primary">Създай нова обява</a></div></center>
 }
 
 
@@ -56,13 +75,12 @@
     @foreach (var item in Model)
     {
 
-        <div class="cats" style="display: flex; font-family: cursive; flex-direction: column; margin-bottom: 25px;">
-            <span class="cat-name" style="background-color:orange; font-weight:800; font-size: 25px;border-bottom: 3px solid #d18111; border-top-left-radius: 5px; border-top-right-radius: 5px;">@Html.DisplayFor(modelItem => item.Name)</span>
+        <div class="cats">
+            <span class="cat-name">@Html.DisplayFor(modelItem => item.Name)</span>
             <img src="@Html.DisplayFor(modelItem => item.ImageURL)" />
-            <div class="cat-description" style="display: inline-flex; flex-direction: row; padding: 10px;">
+            <div class="cat-description">
                 <div>
                     <div>
-
                         <dl class="row" style="position: relative;">
                             <dt class="col-sm-2">
                                 @Html.DisplayNameFor(model => model.Age)
@@ -99,9 +117,9 @@
                     @if (User.IsInRole("Admin"))
                     {
                         <div class="buttons">
-                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Edit</a>
-                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Details</a>
-                            <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Delete</a>
+                            <a asp-action="Edit" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Редактирай</a>
+                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
+                            <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий обявата</a>
                         </div>
                     }
                     @if (User.IsInRole("User"))
@@ -110,14 +128,9 @@
                             <a asp-controller="Adoptions" asp-action="Index" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Осинови</a>
                         </div>
                     }
-
                 </div>
-
-
             </div>
         </div>
-
     }
 </div>
 
-</table>
