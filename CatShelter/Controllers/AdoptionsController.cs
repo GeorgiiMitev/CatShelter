@@ -77,7 +77,18 @@ namespace CatShelter.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
-
+        public async Task<IActionResult> CreateCatAdoption(int catId)
+        {
+            Adoption adoption = new Adoption();
+            adoption.CatsId = catId;
+            adoption.AdoptionDate = DateTime.Now;
+            adoption.Description = "";
+            adoption.ClientsId = _userManager.GetUserId(User);
+            
+            _context.Adoptions.Add(adoption);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
         // GET: Adoptions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {

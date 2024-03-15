@@ -37,12 +37,12 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cats" asp-action="Index">Осинови</a>
                         </li>
-
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Adoptions" asp-action="Index">Осиновени</a>
+                        </li>
                         @if (User.IsInRole("Admin"))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Adoptions" asp-action="Index">Осиновители</a>
-                            </li>
+
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
                             </li>
