@@ -122,10 +122,10 @@
                             <a asp-action="Delete" asp-route-id="@item.Id" type="submit" class="btn btn-danger">Изтрий обявата</a>
                         </div>
                     }
-                    @if (User.IsInRole("User"))
+                    @if (!User.IsInRole("Admin"))
                     {
                         <div class="buttons">
-                            <a asp-controller="Adoptions" asp-action="Index" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Осинови</a>
+                            <a asp-controller="Adoptions" asp-action="CreateCatAdoption" asp-route-catId="@item.Id" type="submit" class="btn btn-primary">Осинови</a>
                         </div>
                     }
                 </div>
