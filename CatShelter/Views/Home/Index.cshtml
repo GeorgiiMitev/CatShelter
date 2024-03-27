@@ -46,18 +46,19 @@
         .heading a:hover {
             font-size: 44px;
             text-decoration: none;
-            border-bottom: 5px solid white;
             border-radius: 9999px;
             color: white;
         }
 
-    span {
+    .heading span {
         padding: 3px 10px;
         border-top: 5px solid white;
+        border-bottom: 5px solid white;
         border-radius: 9999px;
+
     }
     
-    span, h1{
+    .heading span, h1{
         background: linear-gradient(#db890f, #fcba03);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
@@ -125,13 +126,22 @@
     .title{
         text-align: center;
     }
+    .adopt a:hover{
+        transform: scale(1.1);
+    }
+    .adopt a{
+        transition: ease-in-out 1s;
+    }
+    
 </style>
 <div class="image-container">
     <img src="https://d6ph2xvi1auyo.cloudfront.net/images/1.jpg" />
     <div class="centered-text">
         <div class="heading">
             <h1>Гарфилд<br /></h1>
-            <a href="Cats"><span>Осинови коте</span></a>
+            <div class="adopt">
+                <a href="Cats"><span>Осинови коте</span></a>
+            </div>
         </div>
     </div>
 </div>
