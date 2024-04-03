@@ -103,7 +103,7 @@ namespace CatShelter.Controllers
             {
                 return NotFound();
             }
-            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
+            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Name", adoption.CatsId);
             //ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
             return View(adoption);
         }
@@ -113,9 +113,10 @@ namespace CatShelter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CatsId,Description,AdoptionDate")] Adoption adoption)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,CatsId,Description")] Adoption adoption)
         {
             adoption.ClientsId = _userManager.GetUserId(User);
+            adoption.AdoptionDate = DateTime.Now;
             if (id != adoption.Id)
             {
                 return NotFound();
@@ -125,7 +126,7 @@ namespace CatShelter.Controllers
             {
                 try
                 {
-                    _context.Update(adoption);
+                    _context.Adoptions.Update(adoption);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
@@ -141,8 +142,8 @@ namespace CatShelter.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Id", adoption.CatsId);
-            ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
+            ViewData["CatsId"] = new SelectList(_context.Cats, "Id", "Name", adoption.CatsId);
+            //ViewData["ClientsId"] = new SelectList(_context.Users, "Id", "Id", adoption.ClientsId);
             return View(adoption);
         }
 
