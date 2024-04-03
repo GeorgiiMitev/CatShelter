@@ -19,17 +19,17 @@
             <div>
                 <section>
                     <form id="account" method="post">
-                        <h2>Use a local account to log in.</h2>
+                        <center><h2>Вписване в акаунт</h2></center>
                         <hr />
                         <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
                         <div class="form-floating mb-3">
                             <input asp-for="Input.UserName" class="form-control" autocomplete="username" aria-required="true" placeholder="Username" />
-                            <label asp-for="Input.UserName" class="form-label">Username</label>
+                            <label asp-for="Input.UserName" class="form-label">Потребителско име</label>
                             <span asp-validation-for="Input.UserName" class="text-danger"></span>
                         </div>
                         <div class="form-floating mb-3">
                             <input asp-for="Input.Password" class="form-control" autocomplete="off" aria-required="true" placeholder="password" />
-                            <label asp-for="Input.Password" class="form-label">Password</label>
+                            <label asp-for="Input.Password" class="form-label">Парола</label>
                             <span asp-validation-for="Input.Password" class="text-danger"></span>
                         </div>
                         <div class="checkbox mb-3">
@@ -39,17 +39,17 @@
                             </label>
                         </div>
                         <div>
-                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
+                            <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Впиши се</button>
                         </div>
                         <div>
                             <p>
-                                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                                <a id="forgot-password" asp-page="./ForgotPassword">Забрави ли сте си паролата?</a>
                             </p>
                             <p>
-                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+                                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Направете си регистрация</a>
                             </p>
                             <p>
-                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
+                                <a id="resend-confirmation" asp-page="./ResendEmailConfirmation">Повторно изпращане на имейл за потвърджение</a>
                             </p>
                         </div>
                     </form>
