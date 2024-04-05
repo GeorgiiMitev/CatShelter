@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using CatShelter.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 namespace CatShelter.Controllers
 {
@@ -25,8 +26,24 @@ namespace CatShelter.Controllers
         // GET: Adoptions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Adoptions.Include(a => a.Cats).Include(a => a.Clients);
-            return View(await applicationDbContext.ToListAsync());
+            if (User.IsInRole("Admin"))
+            {
+                var applicationDbContext = _context.Adoptions
+                    .Include(a => a.Clients)
+                    .Include(a => a.Cats);
+
+                return View(await applicationDbContext.ToListAsync());
+            }
+            else
+            {
+                var applicationDbContext = _context.Adoptions
+                    .Include(a => a.Clients)
+                    .Include(a => a.Cats)
+                    .Where(x => x.ClientsId == _userManager.GetUserId(User));
+                return View(await applicationDbContext.ToListAsync());
+            }
+
+
         }
 
         // GET: Adoptions/Details/5
@@ -84,7 +101,7 @@ namespace CatShelter.Controllers
             adoption.AdoptionDate = DateTime.Now;
             adoption.Description = "";
             adoption.ClientsId = _userManager.GetUserId(User);
-            
+
             _context.Adoptions.Add(adoption);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
@@ -92,7 +109,7 @@ namespace CatShelter.Controllers
         // GET: Adoptions/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            
+
             if (id == null || _context.Adoptions == null)
             {
                 return NotFound();
