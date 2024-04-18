@@ -51,9 +51,10 @@
     }
 
     .cat-description {
-        display: inline-flex;
+        display: flex;
         flex-direction: row;
         padding: 10px;
+       
     }
 
     .col-sm-10 {
@@ -125,6 +126,7 @@
                     @if (!User.IsInRole("Admin"))
                     {
                         <div class="buttons">
+                            <a asp-action="Details" asp-route-id="@item.Id" type="submit" class="btn btn-primary">Детайли</a>
                             <a asp-controller="Adoptions" asp-action="CreateCatAdoption" asp-route-catId="@item.Id" type="submit" class="btn btn-primary">Осинови</a>
                         </div>
                     }

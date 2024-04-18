@@ -47,10 +47,10 @@ namespace ASPShopBag.Services
             //Seed Default User
             var defaultUser = new Client
             {
-                UserName = "superadmin",
+                UserName = "Admin",
                 Email = "superadmin@gmail.com",
-                FirstName = "Tonya",
-                LastName = "Belezireva",
+                FirstName = "Georgi",
+                LastName = "Mitev",
                 PhoneNumber = "0899999999",
                 EmailConfirmed = true,
                 PhoneNumberConfirmed = true
