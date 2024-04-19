@@ -32,7 +32,7 @@
 
         .cats img {
             max-width: 100%;
-            height: 250px;
+            height: 252.5px;
             object-fit: contain;
         }
 
@@ -77,8 +77,9 @@
     {
 
         <div class="cats">
+            
             <span class="cat-name">@Html.DisplayFor(modelItem => item.Name)</span>
-            <img src="@Html.DisplayFor(modelItem => item.ImageURL)" />
+            <a asp-action="Details" asp-route-id="@item.Id"> <img src="@Html.DisplayFor(modelItem => item.ImageURL)" /></a>
             <div class="cat-description">
                 <div>
                     <div>
