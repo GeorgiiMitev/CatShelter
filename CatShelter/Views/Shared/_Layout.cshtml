@@ -5,9 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CatShelter</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CatShelter.styles.css" asp-append-version="true" />
+    
     <style>
         nav img {
             display: flex;
@@ -17,7 +19,10 @@
         nav ul li {
             font-weight: 500;
         }
-
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+        }
+        
         footer {
             background-color: orange;
             border: 3px solid black;
@@ -27,11 +32,12 @@
             position: absolute;
             top: 100%;
             flex-wrap: wrap;
+            border-top-left-radius: 1%;
+            border-top-right-radius: 1%;
         }
 
         .footer-info {
             width: 25%;
-            border-left: 2px solid orange;
         }
 
         .footer-info-title {
@@ -67,11 +73,48 @@
         .socials-container {
             display: flex;
             flex-direction: row;
+            min-width: 250px;
+            border-bottom: 1px solid black;
         }
-        iframe{
-            box-shadow: 0px 0px 10px white;
+
+        #contacts-width {
+            max-width: 250px;
         }
-        
+
+        iframe {
+            box-shadow: 0px 0px 10px white, 0px 0px 20px white, 0px 0px 30px white;
+            border: 2px solid white;
+            border-radius: 5%;
+        }
+        .admin-item{
+            background-color: orange;
+            margin-right: 5px;
+            border: 2px solid black;
+            padding: 0;
+            border-radius: 9999px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            max-width: 125px;
+            text-align: center;
+        }
+        .admin-item span{
+            padding-right: 5px;
+
+        }
+        @@media screen and (max-width: 991px) {
+            .footer .socials-text {
+                font-size: 15px;
+            }
+        }
+
+        @@media screen and (max-width: 830px) {
+            .footer {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
 
     </style>
 </head>
@@ -98,15 +141,30 @@
                         </li>
                         @if (User.IsInRole("Admin"))
                         {
-
+                            
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
+                                <div class="admin-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
+                                    <span class="material-symbols-outlined">
+                                        settings
+                                    </span>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Породи</a>
+                                <div class="admin-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Породи</a>
+                                    <span class="material-symbols-outlined">
+                                        settings
+                                    </span>
+                                </div>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Ваксини</a>
+                                <div class="admin-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Ваксини</a>
+                                    <span class="material-symbols-outlined">
+                                        settings
+                                    </span>
+                                </div>
                             </li>
                         }
 
@@ -127,20 +185,20 @@
             <div class="socials-title">
                 <span class="footer-info-title">Контакти</span>
                 <div class="socials">
-                    <div class="socials-container">
+                    <div id="contacts-width" class="socials-container">
                         <div class="socials-icons"><img src="https://static.vecteezy.com/system/resources/previews/020/009/614/original/email-and-mail-icon-black-free-png.png" width="50" /></div>
                         <div class="socials-text"><span style="font-family: cursive;">garfield@gmail.com</span></div>
                     </div>
                 </div>
                 <div class="socials">
-                    <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://cdn-icons-png.flaticon.com/512/15/15407.png" width="50" /></a></div>
+                    <div id="contacts-width" class="socials-container">
+                        <div class="socials-icons"><img src="https://cdn-icons-png.flaticon.com/512/15/15407.png" width="50" /></div>
                         <div class="socials-text"><span style="font-family: cursive;">+359 123456789</span></div>
                     </div>
                 </div>
                 <div class="socials">
-                    <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://freesvg.org/img/noun-project-462.png" width="50" /></a></div>
+                    <div id="contacts-width" class="socials-container">
+                        <div class="socials-icons"><img src="https://freesvg.org/img/noun-project-462.png" width="50" /></div>
                         <div class="socials-text"><span style="font-family: cursive;">ул. "Иван Вазов" 34</span></div>
                     </div>
                 </div>
@@ -151,26 +209,26 @@
                 <span class="footer-info-title">Социални мрежи</span>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-2-512.png" width="50" /></a></div>
-                        <div class="socials-text"><span style="font-family: cursive;">instagram.com</span></div>
+                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://cdn4.iconfinder.com/data/icons/picons-social/57/38-instagram-2-512.png" width="50" /></div>
+                        <div class="socials-text"><span style="font-family: cursive;">instagram.com</span></div></a>
                     </div>
                 </div>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://seeklogo.com/images/F/facebook-icon-black-logo-133935095E-seeklogo.com.png" width="50" /></a></div>
-                        <div class="socials-text"><span style="font-family: cursive;">facebook.com</span></div>
+                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://seeklogo.com/images/F/facebook-icon-black-logo-133935095E-seeklogo.com.png" width="50" /></div>
+                        <div class="socials-text"><span style="font-family: cursive;">facebook.com</span></div></a>
                     </div>
                 </div>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://cdn-icons-png.flaticon.com/512/60/60580.png" width="50" /></a></div>
-                        <div class="socials-text"><span style="font-family: cursive;">twitter.com</span></div>
+                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://cdn-icons-png.flaticon.com/512/60/60580.png" width="50" /></div>
+                        <div class="socials-text"><span style="font-family: cursive;">twitter.com</span></div></a>
                     </div>
                 </div>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/youtube-icon.png" width="50" /></a></div>
-                        <div class="socials-text"><span style="font-family: cursive;">youtube.com</span></div>
+                        <div class="socials-icons"><a href="https://instagram.com"><img src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/youtube-icon.png" width="50" /></div>
+                        <div class="socials-text"><span style="font-family: cursive;">youtube.com</span></div></a>
                     </div>
                 </div>
             </div>
@@ -189,5 +247,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
 </body>
 </html>

@@ -119,6 +119,9 @@
         text-align: justify;
         flex-direction: column;
     }
+    #margin-text{
+        margin-bottom: 60px;
+    }
     .text-center{
         font-size: 36px;
         font-family: cursive;
@@ -139,7 +142,57 @@
     .heading h1{
         -webkit-text-stroke: 1px #fff;
     }
-    
+
+    @@media screen and (max-width: 1400px) {
+        .aboutus-container .aboutus-text p{
+            font-size: 18px;
+        }
+    }
+
+    @@media screen and (max-width: 1199px) {
+        .aboutus-container .aboutus-text{
+            line-height: 1.5rem;
+        }
+    }
+
+    @@media screen and (max-width: 991px) {
+        .aboutus-container .aboutus-text p {
+            font-size: 14px;
+            line-height: 1rem;
+            text-shadow: 1px 1px black, 1.25px 1.25px black;
+        }
+
+            .aboutus-container .aboutus-text p::first-letter{
+                font-size: 20px;
+            }
+            h1{
+                font-size: 35px;
+            }
+            .heading{
+                font-size: 25px;
+            }
+            .heading a:hover{
+                font-size: 29px;
+            }
+        .title{
+            font-size: 15px;
+            text-shadow: 0.25px 0.25px black;
+            
+        }
+    }
+
+    @@media screen and (max-width: 768px) {
+        .aboutusimage-container{
+            display: inline-flex;
+            align-items: center;
+        }
+        .aboutus-text{
+            margin: 0;
+        }
+        #margin-text{
+            margin-bottom: 0;
+        }
+    }
 </style>
 <div class="image-container">
     <img src="https://d6ph2xvi1auyo.cloudfront.net/images/1.jpg" />
@@ -159,7 +212,7 @@
     <div class="aboutusimage-container">
         <img src="https://thevets.com/wp-content/uploads/2022/05/orange_cats_2-1.jpg" />
     </div>
-    <div class="aboutus-text" style="margin-bottom: 60px; border-right: 2px solid lightgray;">
+    <div id="margin-text" class="aboutus-text" style="border-right: 2px solid lightgray;">
         <h3 class="title">Спасяваш живот и даваш любов</h3>
         <br />
         <p>
@@ -208,7 +261,7 @@
         <p>
             Една улична котка става родител средно
             на 8 котета за една година. През следващата
-            година семейството ѝ ще се увечи с около 50-60 внучета,
+            година семейството ѝ ще се увеличи с около 50-60 внучета,
             а следващите 10 години бройката става шокираща.
             Нарастването на популацията се контролира само
             с отговорно отглеждане и кастрация. Осиновяването на улично
