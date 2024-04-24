@@ -9,7 +9,12 @@
     }
 
     .buttons #createbutton {
-        margin-top: 5px;
+        margin-top: 3px;
+        margin-right: 5px;
+    }
+    .buttons{
+        display: flex;
+        flex-direction: row;
     }
 </style>
 <h1>Create</h1>
@@ -64,10 +69,10 @@
             </div>
             <div class="buttons">
                 <div class="form-group" id="createbutton">
-                    <input type="submit" value="Create" class="btn btn-primary" />
+                    <input type="submit" value="Създай" class="btn btn-primary" />
                 </div>
                 <div>
-                    <a asp-action="Index" type="submit" class="btn btn-primary">Back to List</a>
+                    <a asp-action="Index" type="submit" class="btn btn-primary">Назад</a>
                 </div>
             </div>
         </form>

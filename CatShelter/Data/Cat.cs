@@ -12,20 +12,20 @@ namespace CatShelter.Data
         [DisplayName("Цвят")]
         public string Color { get; set; }
         public enum Sex { M, F }
-
-        public int BreedsId { get; set; }
         [DisplayName("Порода")]
-        public Breed Breeds { get; set; }
+        public int BreedsId { get; set; }
 
+        public Breed Breeds { get; set; }
+        [DisplayName("Ваксина")]
         public int VaccinesId { get; set; }
-        [DisplayName("Ваксиниран/а")]
+
         public Vaccine Vaccines { get; set; }
-        
-        public int CagesId { get; set; }
         [DisplayName("Клетка")]
+        public int CagesId { get; set; }
+
 
         public Cage Cages { get; set; }
-        [DisplayName("Снимка")]
+        [DisplayName("Снимка URL")]
         public string ImageURL { get; set; }
         [DisplayName("Дата")]
         public DateTime Date { get; set; } = DateTime.Now;
