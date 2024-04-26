@@ -21,8 +21,20 @@ namespace CatShelter.Controllers
         // GET: Cats
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Cats.Include(c => c.Breeds).Include(c => c.Cages).Include(c => c.Vaccines);
-            return View(await applicationDbContext.ToListAsync());
+            var applicationDbContext = await _context.Cats
+                .Include(c => c.Breeds)
+                .Include(c => c.Cages)
+                .Include(c => c.Vaccines).ToListAsync();
+            applicationDbContext = applicationDbContext.Select(x =>
+            {
+                if (x.ImageURL.Contains(';'))
+                {
+                    x.ImageURL = x.ImageURL.Substring(0, x.ImageURL.IndexOf(';'));
+                }
+                return x;
+
+            }).ToList();
+            return View(applicationDbContext);
         }
 
         // GET: Cats/Details/5
@@ -42,7 +54,7 @@ namespace CatShelter.Controllers
             {
                 return NotFound();
             }
-
+            ViewData["images"] = cat.ImageURL.Split(';').ToList();
             return View(cat);
         }
 

@@ -10,7 +10,6 @@
     }
 
     .catdescription-container {
-    
         display: flex;
         flex-direction: row;
     }
@@ -20,18 +19,17 @@
         justify-content: center;
         width: 50%;
         align-items: center;
-
-        
+        flex-wrap
     }
 
-    .catdescription-image img{
-        max-width: 100%;
-        max-height:350px;
-        object-fit: contain;
-        box-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black;
-        border-radius: 10px;
-        border: 1px solid black;
-    }
+        .catdescription-image img {
+            max-width: 100%;
+            max-height: 350px;
+            object-fit: contain;
+            box-shadow: 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black;
+            border-radius: 10px;
+            border: 1px solid black;
+        }
 
     .catdescription {
         width: 50%;
@@ -68,36 +66,65 @@
         font-family: cursive;
         font-size: 18px;
     }
-    .catinfo dd,dt{
+
+        .catinfo dd, dt {
             margin-bottom: 25px;
             border-bottom: 1px solid gray;
             text-shadow: 1px 1px #f57207, 2px 2px #f57207;
             font-weight: 900;
             color: orange;
+        }
 
-    }
     .col-sm-10 {
         width: 50%;
-        
-
     }
 
     .col-sm-2 {
         width: 50%;
-       
-        
     }
-    h1{
+
+    h1 {
         text-shadow: 1px 1px #f57207, 2px 2px #f57207, 3px 3px #f57207, 4px 4px #f57207;
         font-weight: 900;
         color: orange;
     }
-    
+
+    .imagechange-container {
+        width: 100%;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+    }
+    .image-change{
+        padding: 5px;
+    }
+    .image-change img{
+        max-width: 100%;
+        height: auto;
+    }
 </style>
+
 <center><h1>Информация</h1></center>
 <div class="catdescription-container">
-    <div class="catdescription-image">
-        <img src="@Html.DisplayFor(model => model.ImageURL)" />
+    <div class="catdescription-image" style="flex-direction: column;">
+        <div style="margin-bottom: 50px;">
+            <img id="mainImage" src="@ViewBag.images[0]" />
+        </div>
+        <div class="imagechange-container" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
+            @foreach (var item in ViewBag.images)
+            {
+                <div style="width: 33%; margin-bottom: 5px; ">
+                    <div>
+                        <div class="image-change">
+                            <img id="secondaryImage" src="@item" onclick="changeImage('@item');" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+
+        @* <img src="@Html.DisplayFor(model => model.ImageURL)" /> *@
     </div>
     <div class="catdescription">
         <div class="namecenter"><span class="catname">@Html.DisplayFor(model => model.Name)</span></div>
@@ -143,6 +170,12 @@
     </div>
 
 </div>
+<script>
+    function changeImage(a) {
+
+        document.getElementById("mainImage").src = a;
+    }
+</script>
 @* <div>
     <h4>Cat</h4>
     <hr />
