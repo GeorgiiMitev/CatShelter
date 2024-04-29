@@ -95,13 +95,32 @@
         display: flex;
         flex-direction: row;
     }
-    .image-change{
+
+    .image-change {
         padding: 5px;
     }
-    .image-change img{
-        max-width: 100%;
-        height: auto;
+
+        .image-change img {
+            max-width: 100%;
+            height: auto;
+        }
+
+    .adoptbutton {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
+
+        .adoptbutton a {
+            background-color: orange;
+            border-color: orange;
+        }
+
+        .adoptbutton a:hover {
+            background-color: darkorange;
+            border-color: darkorange;
+        }
 </style>
 
 <center><h1>Информация</h1></center>
@@ -109,6 +128,7 @@
     <div class="catdescription-image" style="flex-direction: column;">
         <div style="margin-bottom: 50px;">
             <img id="mainImage" src="@ViewBag.images[0]" />
+
         </div>
         <div class="imagechange-container" style="display: flex; justify-content: space-evenly; flex-wrap: wrap;">
             @foreach (var item in ViewBag.images)
@@ -164,7 +184,9 @@
                 <p>
                     @Html.DisplayFor(model => model.Description)
                 </p>
-
+                <div class="adoptbutton">
+                    <center><a asp-controller="Adoptions" asp-action="CreateCatAdoption" asp-route-catId="@Model.Id" type="submit" class="btn btn-primary">Осинови</a></center>
+                </div>
             </div>
         </div>
     </div>
