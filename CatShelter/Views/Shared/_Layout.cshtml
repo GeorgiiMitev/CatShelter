@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/CatShelter.styles.css" asp-append-version="true" />
-    
+
     <style>
         nav img {
             display: flex;
@@ -19,10 +19,15 @@
         nav ul li {
             font-weight: 500;
         }
+
         .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            user-select: none;
         }
-        
+        header{
+            user-select: none;
+        }
+
         footer {
             background-color: orange;
             border: 3px solid black;
@@ -55,10 +60,12 @@
             padding: 10px;
             font-size: 20px;
         }
-        .socials a{
+
+        .socials a {
             color: white;
             text-decoration: none;
         }
+
         .socials-title {
             display: flex;
             flex-direction: column;
@@ -78,7 +85,6 @@
             flex-direction: row;
             min-width: 250px;
             border-bottom: 1px solid black;
-            
         }
 
         #contacts-width {
@@ -90,7 +96,8 @@
             border: 2px solid white;
             border-radius: 5%;
         }
-        .admin-item{
+
+        .admin-item {
             background-color: orange;
             margin-right: 5px;
             border: 2px solid black;
@@ -101,11 +108,11 @@
             align-items: center;
             max-width: 125px;
             text-align: center;
+            animation: admin-item 1s infinite;
         }
-        .admin-item span{
-            padding-right: 5px;
 
-        }
+
+
         @@media screen and (max-width: 991px) {
             .footer .socials-text {
                 font-size: 15px;
@@ -120,6 +127,63 @@
             }
         }
 
+        .drop-down-menu {
+            position: relative;
+            display: inline-block;
+           
+
+        }
+
+        .drop-down-content {
+            display: none;
+            position: absolute;
+            background-color: white;
+            color: white;
+            min-width: 75px;
+            box-shadow: 3px 3px orange inset, 3px 3px #f57207, 0px 0px black;
+            z-index: 1;
+        }
+
+            .drop-down-content a {
+                color: white;
+            }
+
+        .drop-down-menu:hover .drop-down-content {
+            display: block;
+        }
+
+        .drop-down-menu:hover {
+            cursor: pointer;
+        }
+
+        @@keyframes admin-item {
+            0% {
+                box-shadow: 0 0 0 0 #f57207;
+            }
+
+            50% {
+                box-shadow: 0 0 0 5px transparent;
+            }
+        }
+        #paw1{
+            position: absolute;
+            top: -25%;
+            left: 35%;
+            z-index: 0;
+            color: darkorange;
+            text-shadow: 1.5px 1.5px black;
+            transform: rotate(15deg) scale(0.75);
+        }
+        #paw2{
+            position: absolute;
+            top: -25%;
+            left: 60%;
+            z-index: 0;
+            color: darkorange;
+            text-shadow: 1.5px 1.5px black;
+            transform: rotate(45deg) scale(0.75);
+            
+        }
     </style>
 </head>
 
@@ -137,39 +201,66 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Начало</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item" style="position: relative;">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cats" asp-action="Index">Осинови</a>
+                            <span id="paw1" class="material-symbols-outlined">
+                                pets
+                            </span>
+                            <span id="paw2" class="material-symbols-outlined">
+                                pets
+                            </span>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Adoptions" asp-action="Index">Осиновени</a>
-                        </li>
+                        @if (User.IsInRole("User") || User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item" >
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Adoptions" asp-action="Index">Осиновени</a>
+                            </li>
+                            
+                        }
                         @if (User.IsInRole("Admin"))
                         {
-                            
+                          
                             <li class="nav-item">
-                                <div class="admin-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
-                                    <span class="material-symbols-outlined">
-                                        settings
-                                    </span>
+                                <div>
+                                    <div class="drop-down-menu nav-link text-dark">
+                                        <div class="admin-item">
+                                            <span class="material-symbols-outlined">
+                                                settings
+                                            </span>
+                                        </div>
+                                        <div class="drop-down-content">
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Породи</a>
+                                            <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Ваксини</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </li>
-                            <li class="nav-item">
-                                <div class="admin-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Породи</a>
-                                    <span class="material-symbols-outlined">
-                                        settings
-                                    </span>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <div class="admin-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Ваксини</a>
-                                    <span class="material-symbols-outlined">
-                                        settings
-                                    </span>
-                                </div>
-                            </li>
+
+                            @*  <li class="nav-item">
+                        <div class="admin-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Cages" asp-action="Index">Клетки</a>
+                        <span class="material-symbols-outlined">
+                        settings
+                        </span>
+                        </div>
+                        </li>
+                        <li class="nav-item">
+                        <div class="admin-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Breeds" asp-action="Index">Породи</a>
+                        <span class="material-symbols-outlined">
+                        settings
+                        </span>
+                        </div>
+                        </li>
+                        <li class="nav-item">
+                        <div class="admin-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Vaccines" asp-action="Index">Ваксини</a>
+                        <span class="material-symbols-outlined">
+                        settings
+                        </span>
+                        </div>
+                        </li> *@
                         }
 
                     </ul>
@@ -219,19 +310,19 @@
                 </div>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img draggable="false" src="https://seeklogo.com/images/F/facebook-icon-black-logo-133935095E-seeklogo.com.png" width="50" /></div>
+                        <div class="socials-icons"><a href="https://facebook.com"><img draggable="false" src="https://seeklogo.com/images/F/facebook-icon-black-logo-133935095E-seeklogo.com.png" width="50" /></div>
                         <div class="socials-text"><span style="font-family: cursive;">facebook.com</span></div></a>
                     </div>
                 </div>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img draggable="false" src="https://cdn-icons-png.flaticon.com/512/60/60580.png" width="50" /></div>
+                        <div class="socials-icons"><a href="https://twitter.com"><img draggable="false" src="https://cdn-icons-png.flaticon.com/512/60/60580.png" width="50" /></div>
                         <div class="socials-text"><span style="font-family: cursive;">twitter.com</span></div></a>
                     </div>
                 </div>
                 <div class="socials">
                     <div class="socials-container">
-                        <div class="socials-icons"><a href="https://instagram.com"><img draggable="false" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/youtube-icon.png" width="50" /></div>
+                        <div class="socials-icons"><a href="https://youtube.com"><img draggable="false" src="https://uxwing.com/wp-content/themes/uxwing/download/brands-and-social-media/youtube-icon.png" width="50" /></div>
                         <div class="socials-text"><span style="font-family: cursive;">youtube.com</span></div></a>
                     </div>
                 </div>
@@ -240,7 +331,7 @@
         <div class="footer-info">
             <div class="text-center">
                 <span class="footer-info-title">Адрес</span>
-                <div><iframe  style="width: 250px; height: 250px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23478.8127252714!2d24.76775128441189!3d42.643306096002156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9964870ace0b5%3A0xaad95876b628a138!2z0KLRgNC40L7QstC10YI!5e0!3m2!1sbg!2sbg!4v1712132261258!5m2!1sbg!2sbg" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+                <div><iframe style="width: 250px; height: 250px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23478.8127252714!2d24.76775128441189!3d42.643306096002156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9964870ace0b5%3A0xaad95876b628a138!2z0KLRgNC40L7QstC10YI!5e0!3m2!1sbg!2sbg!4v1712132261258!5m2!1sbg!2sbg" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
             </div>
         </div>
 

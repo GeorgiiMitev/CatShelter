@@ -18,8 +18,9 @@ namespace CatShelter.Controllers
         {
             _context = context;
         }
-        // GET: Wines
-        public async Task<IActionResult> Index(string searchString)
+
+        //GET: Cats(Search)
+        public async Task<IActionResult> SearchIndex(string searchString)
         {
             if (searchString.IsNullOrEmpty())
             {
@@ -34,32 +35,29 @@ namespace CatShelter.Controllers
             var cats = from m in _context.Cats select m;
             if (!String.IsNullOrEmpty(searchString))
             {
-                cats = cats.Where(s => s.Name.Contains(searchString));
+                cats = cats.Where(n => n.Name.Contains(searchString));
             }
             return View(cats.ToList());
-            //var applicationDbContext = _context.Wines
-            //.Include(w => w.WineCattegories)
-            //.Include(w => w.WineTypes);
-            //return View(await applicationDbContext.ToListAsync());
         }
-        //// GET: Cats
-        //public async Task<IActionResult> Index()
-        //{
-        //    var applicationDbContext = await _context.Cats
-        //        .Include(c => c.Breeds)
-        //        .Include(c => c.Cages)
-        //        .Include(c => c.Vaccines).ToListAsync();
-        //    applicationDbContext = applicationDbContext.Select(x =>
-        //    {
-        //        if (x.ImageURL.Contains(';'))
-        //        {
-        //            x.ImageURL = x.ImageURL.Substring(0, x.ImageURL.IndexOf(';'));
-        //        }
-        //        return x;
 
-        //    }).ToList();
-        //    return View(applicationDbContext);
-        //}
+        //// GET: Cats
+        public async Task<IActionResult> Index()
+        {
+            var applicationDbContext = await _context.Cats
+                .Include(c => c.Breeds)
+                .Include(c => c.Cages)
+                .Include(c => c.Vaccines).ToListAsync();
+            applicationDbContext = applicationDbContext.Select(x =>
+            {
+                if (x.ImageURL.Contains(';'))
+                {
+                    x.ImageURL = x.ImageURL.Substring(0, x.ImageURL.IndexOf(';'));
+                }
+                return x;
+
+            }).ToList();
+            return View(applicationDbContext);
+        }
 
         // GET: Cats/Details/5
         public async Task<IActionResult> Details(int? id)

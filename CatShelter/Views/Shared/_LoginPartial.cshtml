@@ -13,22 +13,34 @@
     .icon {
         padding-right: 8px;
     }
-    .searchbutton{
+
+    .searchbutton {
         background-color: orange;
         border-color: orange;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
     }
 
-    .searchbutton:hover {
-        color: #fff;
-        background-color: darkorange;
-        border-color: darkorange;
-        border
+        .searchbutton:hover {
+            color: #fff;
+            background-color: darkorange;
+            border-color: darkorange;
+        }
+
+    .search {
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    .nav-item .searchform {
+        width: 75%;
+        float: right;
     }
 </style>
 <ul class="navbar-nav">
     <li class="nav-item">
-        <form class="d-flex" asp-controller="Cats" asp-action="Index">
-            <input style="width: 50%;" class="form-control" type="search" placeholder="Търсачка ... " name="SearchString">
+        <form class="d-flex searchform" asp-controller="Cats" asp-action="Index">
+            <input style="width: 100%;" class="form-control search" type="search" placeholder="Търсачка... " name="SearchString">
             <button class="searchbutton btn btn-secondary my-2 my-sm-0" type="submit">Търси</button>
         </form>
     </li>
@@ -56,17 +68,26 @@
             </div>
         </li>
         <li class="nav-item">
-            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-                <button type="submit" class="nav-link btn btn-link text-dark">Logout</button>
-            </form>
+            <form style="display: flex; flex-direction: row;" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <div class="admin-icon">
+                    <div><button style="font-weight: 500;" type="submit" class="nav-link btn btn-link text-dark">Излизане</button></div>
+                    <div class="icon">
+                        <span class="material-symbols-outlined">
+                            logout
+                        </span>
+                    </div>
+                </div>
+                </form>
+            
+
         </li>
     }
     else
     {
         <li class="nav-item">
-            
+
             <div class="admin-icon">
-                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Регистрация</a>
                 @if (!User.IsInRole("Admin") && !User.IsInRole("User"))
                 {
                     <div class="icon" style="position: relative">
@@ -79,11 +100,11 @@
                     </div>
                 }
             </div>
-            
+
         </li>
         <li class="nav-item">
             <div class="admin-icon">
-                <a style="border-left: 1px solid lightgray; margin-left: 10px;" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+                <a style="border-left: 1px solid lightgray; margin-left: 10px;" class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Вход</a>
                 @if (!User.IsInRole("Admin") && !User.IsInRole("User"))
                 {
                     <div class="icon">
