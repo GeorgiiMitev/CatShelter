@@ -20,30 +20,8 @@ namespace CatShelter.Controllers
         }
 
         //GET: Cats(Search)
-        public async Task<IActionResult> SearchIndex(string searchString)
-        {
-            if (searchString.IsNullOrEmpty())
-            {
-                return View(await _context.Cats.ToListAsync());
-            }
-
-            if (_context.Cats == null)
-            {
-                return Problem("Context is empty");
-            }
-
-            var cats = from m in _context.Cats select m;
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                cats = cats.Where(n => n.Name.Contains(searchString));
-            }
-            return View(cats.ToList());
-        }
-
-        //// GET: Cats
-        public async Task<IActionResult> Index()
-        {
-            var applicationDbContext = await _context.Cats
+        public async Task<IActionResult> Index(string searchString)
+        {var applicationDbContext = await _context.Cats
                 .Include(c => c.Breeds)
                 .Include(c => c.Cages)
                 .Include(c => c.Vaccines).ToListAsync();
@@ -56,8 +34,46 @@ namespace CatShelter.Controllers
                 return x;
 
             }).ToList();
-            return View(applicationDbContext);
+            if (searchString.IsNullOrEmpty())
+            {
+                return View(await _context.Cats.ToListAsync());
+            }
+
+            if (_context.Cats == null)
+            {
+                return Problem("Context is empty");
+            }
+
+            var cats = from m in _context.Cats select m;
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                cats = cats.Where(c => c.Name.Contains(searchString));
+                
+            }
+
+            
+            return View(cats.ToList());
         }
+
+        //// GET: Cats
+        //public async Task<IActionResult> Index()
+        //{
+        //    var applicationDbContext = await _context.Cats
+        //        .Include(c => c.Breeds)
+        //        .Include(c => c.Cages)
+        //        .Include(c => c.Vaccines).ToListAsync();
+        //    applicationDbContext = applicationDbContext.Select(x =>
+        //    {
+        //        if (x.ImageURL.Contains(';'))
+        //        {
+        //            x.ImageURL = x.ImageURL.Substring(0, x.ImageURL.IndexOf(';'));
+        //        }
+        //        return x;
+
+        //    }).ToList();
+        //    return View(applicationDbContext);
+        //}
 
         // GET: Cats/Details/5
         public async Task<IActionResult> Details(int? id)

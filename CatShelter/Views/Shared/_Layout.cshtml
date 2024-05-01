@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - CatShelter</title>
+    <link href="https://fonts.cdnfonts.com/css/garfield" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
@@ -97,6 +98,7 @@
             border-radius: 5%;
         }
 
+        
         .admin-item {
             background-color: orange;
             margin-right: 5px;
@@ -334,14 +336,10 @@
                 <div><iframe style="width: 250px; height: 250px" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23478.8127252714!2d24.76775128441189!3d42.643306096002156!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a9964870ace0b5%3A0xaad95876b628a138!2z0KLRgNC40L7QstC10YI!5e0!3m2!1sbg!2sbg!4v1712132261258!5m2!1sbg!2sbg" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
             </div>
         </div>
-
-
-
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-
 </body>
 </html>
