@@ -60,6 +60,8 @@
         .socials-text {
             padding: 10px;
             font-size: 20px;
+            display: flex;
+            align-items: center;
         }
 
         .socials a {
@@ -211,6 +213,9 @@
                             <span id="paw2" class="material-symbols-outlined">
                                 pets
                             </span>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Contacts">Контакти</a>
                         </li>
                         @if (User.IsInRole("User") || User.IsInRole("Admin"))
                         {
