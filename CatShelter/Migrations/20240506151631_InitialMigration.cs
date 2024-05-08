@@ -84,6 +84,21 @@ namespace CatShelter.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Donation",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Payment = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Donation", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vaccines",
                 columns: table => new
                 {
@@ -356,6 +371,9 @@ namespace CatShelter.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "Donation");
 
             migrationBuilder.DropTable(
                 name: "Cats");

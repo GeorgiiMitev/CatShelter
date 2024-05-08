@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using CatShelter.Data;
 
 namespace CatShelter.Data
 {
@@ -14,5 +15,6 @@ namespace CatShelter.Data
         public DbSet<Vaccine> Vaccines { get; set; }
         public DbSet<Cage> Cages { get; set; }
         public DbSet<Adoption> Adoptions { get; set; }
+        public DbSet<CatShelter.Data.Donation> Donation { get; set; } = default!;
     }
 }

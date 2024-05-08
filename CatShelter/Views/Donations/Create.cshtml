@@ -1,0 +1,128 @@
+﻿@model CatShelter.Data.Donation
+
+@{
+    ViewData["Title"] = "Create";
+}
+<script>
+    function fiveLeva() {
+        let fiveLeva = document.getElementById("paymentvalue");
+        fiveLeva.value = "5";
+    }
+    function tenLeva() {
+        let tenLeva = document.getElementById("paymentvalue");
+        tenLeva.value = "10";
+    }
+    function twentyLeva() {
+        let twentyLeva = document.getElementById("paymentvalue");
+        twentyLeva.value = "20";
+    }
+    function fiftyLeva() {
+        let fiftyLeva = document.getElementById("paymentvalue");
+        fiftyLeva.value = "50";
+    }
+    function seventyfiveLeva() {
+        let seventyfiveLeva = document.getElementById("paymentvalue");
+        seventyfiveLeva.value = "75";
+    }
+    function hundredLeva() {
+        let hundredLeva = document.getElementById("paymentvalue");
+        hundredLeva.value = "100";
+    }
+</script>
+<style>
+    .donation-container {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        min-height: 80vh;
+        font-family: cursive;
+    }
+
+    .payment-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+        .payment-buttons .button {
+            width: 30%;
+            text-align: center;
+            margin: 10px 0px;
+            background-color: green;
+            color: white;
+            box-shadow: 2px 2px #42bd4c inset, 2px 2px #1d4a21;
+            cursor: pointer;
+        }
+
+    .donate-button {
+        display: flex;
+        justify-content: center;
+        margin-top: 15px;
+    }
+    fieldset{
+        border: 2px solid black;
+        padding: 15px;
+        border-radius: 10px;
+    }
+    
+</style>
+
+<div class="donation-container">
+    <h2 style="margin-bottom: 25px;">Дари и помогни</h2>
+    <div>
+        <div class="row">
+            <div>
+                <fieldset>
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Name" class="control-label">Име</label>
+                            <input asp-for="Name" class="form-control" placeholder="Име..."/>
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Email" class="control-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Имейл..."/>
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Payment" class="control-label">Въведи сума</label>
+                            <input asp-for="Payment" class="form-control" id="paymentvalue" placeholder="Сума..." />
+                            <span asp-validation-for="Payment" class="text-danger"></span>
+                        </div>
+                        <div style="margin-top: 5px; text-align: center; font-size: 15px; font-family: cursive; font-weight: bold; color: #adadad; text-shadow: 1px 1px #404040, 2px 2px #404040;">
+                            <span>или избери готова сума..</span>
+                        </div>
+                        <div class="payment-buttons">
+                            <div class="button" onclick="fiveLeva()">5лв.</div>
+                            <div class="button" onclick="tenLeva()">10лв.</div>
+                            <div class="button" onclick="twentyLeva()">20лв.</div>
+                            <div class="button" onclick="fiftyLeva()">50лв.</div>
+                            <div class="button" onclick="seventyfiveLeva()">75лв.</div>
+                            <div class="button" onclick="hundredLeva()">100лв.</div>
+                        </div>
+                        <div class="donate-button">
+                            <div class="form-group">
+                                <input type="submit" value="Продължи" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+
+</div>
+@*
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+ *@
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
