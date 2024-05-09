@@ -4,9 +4,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>Adoption</h4>
+<h1>Редактиране на запис</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -19,12 +17,12 @@
                 <span asp-validation-for="ClientsId" class="text-danger"></span>
             </div> *@
             <div class="form-group">
-                <label asp-for="CatsId" class="control-label"></label>
+                <label asp-for="CatsId" class="control-label">Име на котката</label>
                 <select asp-for="CatsId" class="form-control" asp-items="ViewBag.CatsId"></select>
                 <span asp-validation-for="CatsId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
+                <label asp-for="Description" class="control-label">Описание</label>
                 <input asp-for="Description" class="form-control" />
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
@@ -34,14 +32,14 @@
                 <span asp-validation-for="AdoptionDate" class="text-danger"></span>
             </div> *@
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Запазване" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>
 
 @section Scripts {

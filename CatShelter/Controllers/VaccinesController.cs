@@ -88,8 +88,9 @@ namespace CatShelter.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Date,Description")] Vaccine vaccine)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description")] Vaccine vaccine)
         {
+            vaccine.Date = DateTime.Now;
             if (id != vaccine.Id)
             {
                 return NotFound();

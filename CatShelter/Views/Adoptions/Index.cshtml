@@ -4,21 +4,21 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<center><h1>Осиновени котета</h1></center>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Clients)
+                Потребителско име на клиент
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cats)
+                Коте
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Description)
+                Описание
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AdoptionDate)
+                Дата на осиновяване
             </th>
             <th></th>
         </tr>
@@ -42,9 +42,9 @@
                 @if (User.IsInRole("Admin"))
                 {
                     <td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-primary">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
                     </td>
                 }
 

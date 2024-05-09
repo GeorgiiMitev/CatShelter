@@ -1,0 +1,112 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<script src="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/js/swiffy-slider.min.js" crossorigin="anonymous" defer></script>
+<link href="https://cdn.jsdelivr.net/npm/swiffy-slider@1.6.0/dist/css/swiffy-slider.min.css" rel="stylesheet" crossorigin="anonymous">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<script>
+    function Like() {
+        var like = document.getElementById("heart");
+        like.style = "color: red; font-size: 50px; cursor:pointer;"
+        
+    }
+    function Next() {
+        var like = document.getElementById("heart");
+        like.style = "color: black; font-size: 50px; cursor:pointer;"
+    }
+    function Previous() {
+        var like = document.getElementById("heart");
+        like.style = "color: black; font-size: 50px; cursor:pointer;"
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24
+    }
+
+    .gallery-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .slider-container li {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 500px;
+        min-height: 80vh;
+    }
+    .slider-container img{
+        border-radius: 20px;
+    }
+    .like {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        font-size: 25px;
+        font-family: cursive;
+        text-align: right;
+        margin-top: 20px;
+        align-items: center;
+        
+    }
+    #heart{
+        animation: heart 2s infinite;
+        border-radius: 9999px;
+        padding: 5px;
+        cursor: pointer;
+    }
+    @@keyframes heart {
+        0% {
+            box-shadow: 0 0 0 0 red;
+        }
+
+        100% {
+            box-shadow: 0 0 0 5px transparent;
+        }
+    }
+</style>
+
+<div class="gallery-container">
+    <div class="swiffy-slider">
+        <ul class="slider-container">
+            <li><img src="https://purrs.bg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcU5jIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0ddcfb99b8085bd46aac4ce61ea5e62a79d31fe3/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWlBRGFRS1lBem9NY1hWaGJHbDBlV2xMIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b39d87e78ebadc5fdf3d54b4f89e70bd46e98ae/inbound5508918708561786250.jpg"></li>
+            <li><img src="https://purrs.bg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcUZjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--f2e8df42a9a37992dfec1bef2a99fe52af290397/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWlBRGFRS1lBem9NY1hWaGJHbDBlV2xMIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b39d87e78ebadc5fdf3d54b4f89e70bd46e98ae/inbound7351312288863791000.jpg"></li>
+            <li><img src="https://purrs.bg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcHRjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--39f31828941a619de3ea1c70cb4759f983ec4aee/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWlBRGFRS1lBem9NY1hWaGJHbDBlV2xMIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b39d87e78ebadc5fdf3d54b4f89e70bd46e98ae/inbound3701439587635047390.jpg"></li>
+            <li><img src="https://purrs.bg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcDljIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--2f65a133931000d118fb195717b200fc81581058/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWlBRGFRS1lBem9NY1hWaGJHbDBlV2xMIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b39d87e78ebadc5fdf3d54b4f89e70bd46e98ae/inbound779592821069235921.jpg" /></li>
+            <li><img src="https://purrs.bg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcVZjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--ebe53943139eee769fa55a8b21210002fcb2a914/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWlBRGFRS1lBem9NY1hWaGJHbDBlV2xMIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b39d87e78ebadc5fdf3d54b4f89e70bd46e98ae/inbound6210474858543610559.jpg" /></li>
+            <li><img src="https://purrs.bg/rails/active_storage/representations/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBBcDFjIiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--922cbdd23977d98c6244f185ad82cab5ca1ee777/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaDdDRG9MWm05eWJXRjBTU0lJYW5CbkJqb0dSVlE2RTNKbGMybDZaVjkwYjE5bWFXeHNXd2RwQWlBRGFRS1lBem9NY1hWaGJHbDBlV2xMIiwiZXhwIjpudWxsLCJwdXIiOiJ2YXJpYXRpb24ifX0=--1b39d87e78ebadc5fdf3d54b4f89e70bd46e98ae/inbound6877735205661376135.jpg" /></li>
+            <li><img src="https://www.ocregister.com/wp-content/uploads/2018/07/072918_NWS-OCR-adoptalfie-1.jpg?w=640" /></li>
+            <li><img src="https://www.telegraph.co.uk/content/dam/women/2018/01/30/TELEMMGLPICT000152840203_trans_NvBQzQNjv4BqqVzuuqpFlyLIwiB6NTmJwViJj1eTvcjzL4JkNP_PJEs.jpeg" /></li>
+            <li><img src="https://www.learnreligions.com/thmb/wZJIx9mUq555U36XGa5YoqImugM=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/BlackCat_1500-56a6df835f9b58b7d0e53405.jpg" /></li>
+            <li><img src="https://www.sundaypost.com/wp-content/uploads/sites/13/2016/11/5818830201522.jpg" /></li>
+            <li><img src="https://images.ctfassets.net/cnu0m8re1exe/qDQgxOUG5DNKlKH5TXsbo/813fa629fe33794c7ff439070fc31b89/shutterstock_603117302.jpg?fm=jpg&fl=progressive&w=660&h=433&fit=fill" /></li>
+            <li><img src="https://www.indianapoliszoo.com/wp-content/uploads/2023/10/Boo_1-scaled.jpg" /></li>
+            <li><img src="https://www.petfinder.com/static/9c212d3898fd6df5b570477240ea40e8/fc3d6/100691619-what-is-cat-fostering-632x475.jpg" /></li>
+            <li><img src="https://www.wdc.govt.nz/files/sharedassets/public/v/2/image-collection/animals/cat.jpg?dimension=pageimage&w=480" /></li>
+            <li><img src="https://www.thesprucepets.com/thmb/uQnGtOt9VQiML2oG2YzAmPErrHo=/5441x0/filters:no_upscale():strip_icc()/all-about-tabby-cats-552489-hero-a23a9118af8c477b914a0a1570d4f787.jpg" /></li>
+            <li><img src="https://images.ctfassets.net/7hqiona4456t/3liCY5igQ3KyrFx4zMdEQK/9ab3f4a8d3ecfbe8dad60085bcf477b7/erik-jan-leusink-IbPxGLgJiMI-unsplash.jpg" /></li>
+            <li><img src="https://catastic.pet/wp-content/uploads/2022/01/Tabby-Cat-Facts-1.jpg" /></li>
+            <li><img src="https://moderncat.com/wp-content/uploads/2015/03/bigstock-Tabby-Cat-In-Bathroom-Next-To-473718699-940x640.jpg" /></li>
+        </ul>
+
+        <button onclick="Previous()" type="button" class="slider-nav"></button>
+        <button onclick="Next()" type="button" class="slider-nav slider-nav-next"></button>
+
+        <div class="slider-indicators">
+            <button class="active"></button>
+            <button></button>
+            <button></button>
+        </div>
+    </div>
+</div>
+<div class="like">
+    <span onclick="Like()" id="heart" class="material-symbols-outlined" style="font-size: 50px; cursor: pointer;">
+        favorite
+    </span>
+</div>
+
